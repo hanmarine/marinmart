@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+body {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    min-height: 100vh;
+    background-image: linear-gradient(#246af3, #ffc947);;
+    color: #26344b;
+}
+
+h1.logo{
+    text-align: center;
+    font-family: "Abril Fatface", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffc947;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper {
+    max-width: 400px;
+    text-align: center;
+    padding: 30px 150px;
+    background: rgba( 255, 255, 255, 0.6 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6px );
+    -webkit-backdrop-filter: blur( 6px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+select {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    width: 100%;
+    padding: 10px; 
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"] {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    background-color: #246af3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ffc947;
+    color: #246af3;
+}
+
+/* Footer */
+footer{
+    color: #26344b;
+    text-align: center;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    padding: 20px;
+    width: 100%;
+}
