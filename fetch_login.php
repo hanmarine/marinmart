@@ -24,13 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch ($row['role']) {
                 case 'admin':
-                    header("Location: ../admin/dashboard.php");
+                    header("Location: ./admin/dashboard.php");
                     break;
                 case 'manager':
-                    header("Location: ../manager/dashboard.php");
+                    header("Location: ./manager/dashboard.php");
                     break;
                 case 'user':
-                    header("Location: ../user/dashboard.php");
+                    header("Location: ./user/dashboard.php");
                     break;
                 default:
                     echo "<script>alert('Invalid role.'); window.location.href = 'login.php';</script>";

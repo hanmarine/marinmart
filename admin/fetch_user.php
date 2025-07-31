@@ -1,15 +1,12 @@
 <?php
 include('../db/connection.php');
 
-$tableName = $_GET['table']; // Get the table name from the URL parameter
-$page = $_GET['page'] ?? 1; // Get the current page number or set it to 1 if not provided
-$searchQuery = $_GET['search'] ?? ''; // Get the search query or set it to an empty string if not provided
+$tableName = $_GET['table']; 
+$page = $_GET['page'] ?? 1; 
+$searchQuery = $_GET['search'] ?? ''; 
+$limit = 10; 
+$offset = ($page - 1) * $limit; 
 
-$limit = 10; // Number of records to show per page
-
-$offset = ($page - 1) * $limit; // Calculate the offset for pagination
-
-// Filter users only (modify if needed)
 $userTypeFilter = "";
 if ($tableName === "user_supplier") {
   $userTypeFilter = " WHERE u.role = 'user'";

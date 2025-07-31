@@ -1,5 +1,6 @@
 <?php
 include('../db/connection.php');
+session_start();
 
 $page = isset($_GET['page']) && filter_var($_GET['page'], FILTER_VALIDATE_INT) ? $_GET['page'] : 1;
 $limit = 10;
@@ -38,7 +39,7 @@ function createTable($conn, $tableName, $start, $limit, $search) {
   }
 
   if ($tableName == 'supplier') {
-    $sql = "SELECT s.*, u.username, u.password FROM supplier s LEFT JOIN users u ON s.user_id = u.user_id $searchSql LIMIT ?, ?";
+    $sql = "SELECT s.*, u.username FROM supplier s LEFT JOIN users u ON s.user_id = u.user_id $searchSql LIMIT ?, ?";
   } else {
     $sql = "SELECT * FROM $tableName $searchSql LIMIT ?, ?";
   }
@@ -92,9 +93,11 @@ function createTable($conn, $tableName, $start, $limit, $search) {
       echo "<a id='edit' href='update_form.php?table=$tableName&id=". urlencode($primaryKey). "'>
       <img width='15' height='15' src='https://img.icons8.com/material-rounded/24/FFFFFF/edit--v1.png' alt='edit--v1'/>
       </a>";
-      echo "<a id='delete' href='delete.php?table=$tableName&id=". urlencode($primaryKey). "' onclick=\"return confirm('Are you sure you want to delete this record?');\">
-      <img width='15' height='15' src='https://img.icons8.com/ios-glyphs/30/FFFFFF/trash--v1.png' alt='trash--v1'/>
-      </a>";
+      if($_SESSION['role'] && $_SESSION['role'] == 'admin'){
+        echo "<a id='delete' href='../functions/delete.php?table=$tableName&id=". urlencode($primaryKey). "' onclick=\"return confirm('Are you sure you want to delete this record?');\">
+        <img width='15' height='15' src='https://img.icons8.com/ios-glyphs/30/FFFFFF/trash--v1.png' alt='trash--v1'/>
+        </a>";
+      } else
       echo "</td>";
       echo "</tr>";
     }

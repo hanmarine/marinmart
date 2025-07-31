@@ -1,8 +1,5 @@
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "testiiiing";
+include('development_env.php');
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

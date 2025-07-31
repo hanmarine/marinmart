@@ -1,6 +1,6 @@
 <?php
 // The update form
-include('../db/admin_manager.php');
+include('../db/session.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['table']) && isset($_POST['id'])) {
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update Record</title>
-  <link rel="stylesheet" href="../assets/admin.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="../assets/css/admin.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <header class="header">
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if (isset($data)) : ?>
       <h2 id="update_heading">Update <?php echo ucfirst($table); ?></h2>
       <div id="update_form">
-        <form action="update.php" method="post">
+        <form action="../functions/update.php" method="post">
           <input type="hidden" name="table" value="<?php echo $table; ?>">
           <input type="hidden" name="id" value="<?php echo $id; ?>">
 
@@ -221,36 +221,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       © 2024 Marinmart, All rights reserved.
   </footer>
 
-  <script>
-    // User Dropdown
-    const userDropdownToggle = document.querySelector('.user-dropdown-toggle');
-    const userDropdown = document.querySelector('.user-dropdown');
-
-    userDropdownToggle.addEventListener('click', function() {
-        userDropdownToggle.classList.toggle('active'); 
-    });
-
-    // Close the dropdown if clicked outside
-    document.addEventListener('click', function(event) {
-        if (!userDropdownToggle.contains(event.target) && userDropdown.classList.contains('active')) {
-        userDropdownToggle.classList.remove('active');
-        }
-    });
-    
-    // Password Toggle
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-
-    togglePassword.addEventListener('click', function () {
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      togglePassword.src = 'https://img.icons8.com/pastel-glyph/64/26344b/surprise--v2.png'; // Change image source when password is visible
-    } else {
-      passwordInput.type = 'password';
-      togglePassword.src = 'https://img.icons8.com/ios/50/26344b/closed-eye.png'; // Change image source when password is hidden
-    }
-    });
-</script>
+  <script src="../assets/js/dropdown.js"></script>
+  <script src="../assets/js/passwordToggle.js"></script>
 </body>
 </html>
 

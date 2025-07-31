@@ -88,34 +88,11 @@ mysqli_free_result($userInfoResult);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile | Marinmart</title>
-    <link rel="stylesheet" href="../assets/profile.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/css/profile.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header class="header">
-        <h1 class="logo">marinmart</h1>
-        <nav class="nav">
-            <a href="dashboard.php">DASHBOARD</a>
-            <a href="products.php">PRODUCTS</a>
-            <a href="categories.php">CATEGORIES</a>
-        </nav>
-        <div class="profile">
-            <a href="#" class="user-dropdown-toggle">
-                <img src="../assets/user.png" alt="profile icon" height="40px" width="40px">
-            </a>
-            <div class="user-dropdown">
-                <p>Hi, <?php echo $contactPerson ? $contactPerson : $username; ?> (user)</p>
-                <a href="profile.php">Profile</a>
-                <a href="settings.php">Settings</a>
-                <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?logout=true'; ?>">Logout</a>
-                <?php
-                if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
-                    session_destroy();
-                    header('Location: ../index.php');
-                    exit;
-                }
-                ?>
-            </div>
-        </div>
+        <?php include '../functions/navbar.php' ?>
     </header>
 
     <main class="main">
@@ -190,20 +167,6 @@ mysqli_free_result($userInfoResult);
         © 2024 Marinmart, All rights reserved.
     </footer>
 
-    <script>
-        const userDropdownToggle = document.querySelector('.user-dropdown-toggle');
-        const userDropdown = document.querySelector('.user-dropdown');
-
-        userDropdownToggle.addEventListener('click', function() {
-        userDropdownToggle.classList.toggle('active'); 
-        });
-
-        // Close the dropdown if clicked outside
-        document.addEventListener('click', function(event) {
-        if (!userDropdownToggle.contains(event.target) && userDropdown.classList.contains('active')) {
-            userDropdownToggle.classList.remove('active');
-        }
-        });
-  </script>
+    <script src="../assets/js/dropdown.js"></script>
 </body>
 </html>

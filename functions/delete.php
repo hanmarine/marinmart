@@ -36,7 +36,7 @@ if (isset($_GET['table']) && isset($_GET['id'])) {
         }
         // Commit the transaction if successful
         mysqli_commit($conn);
-        echo "<script>alert('Record deleted successfully.'); window.location.href = '../admin/tables.php';</script>";
+        echo "<script>alert('Record deleted successfully.'); window.history.back();</script>";
       } else {
         // Rollback the transaction on error
         mysqli_rollback($conn);
@@ -49,7 +49,7 @@ if (isset($_GET['table']) && isset($_GET['id'])) {
       mysqli_stmt_bind_param($stmt, 'i', $id);
 
       if (mysqli_stmt_execute($stmt)) {
-        echo "<script>alert('Record deleted successfully.'); window.location.href = '../admin/tables.php';</script>";
+        echo "<script>alert('Record deleted successfully.'); window.history.back();</script>";
       } else {
         throw new Exception(mysqli_error($conn));
       }
@@ -60,16 +60,16 @@ if (isset($_GET['table']) && isset($_GET['id'])) {
 
     // Check if the error is a foreign key constraint violation
     if (strpos($errorMessage, 'CONSTRAINT') !== false) {
-      echo "<script>alert('Error deleting record: Cannot delete parent row due to foreign key constraints.'); window.location.href = '../admin/tables.php';</script>";
+      echo "<script>alert('Error deleting record: Cannot delete parent row due to foreign key constraints.'); window.history.back();</script>";
     } else {
-      echo "<script>alert('Error deleting record: $errorMessage'); window.location.href = '../admin/tables.php';</script>";
+      echo "<script>alert('Error deleting record: $errorMessage'); window.history.back();</script>";
     }
   } finally {
     // Always rollback and commit at the end, depending on the exception
     mysqli_autocommit($conn, TRUE);
   }
 } else {
-  echo "<script>alert('Invalid request.'); window.location.href = '../admin/tables.php';</script>";
+  echo "<script>alert('Invalid request.'); window.history.back();</script>";
 }
 
 mysqli_close($conn);

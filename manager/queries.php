@@ -1,12 +1,12 @@
 <?php
-include('../db/admin_manager.php');
+include('../db/session.php');
 ?>
 <!DOCTYPE html>
 <!-- View Queries -->
 <html>
 <head>
   <title>Queries | Marinmart</title>
-  <link rel="stylesheet" href="../assets/admin.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="../assets/css/admin.css?v=<?php echo time(); ?>">
 </head>
 <body>
   <header class="header">
@@ -49,39 +49,7 @@ include('../db/admin_manager.php');
         © 2024 Marinmart, All rights reserved.
   </footer>
 
-  <script>
-    function loadQuery(queryType, page = 1) {
-      fetch(`fetch_query.php?type=${queryType}&page=${page}`)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('query-container').innerHTML = data;
-        });
-    }
-
-    function loadPage(queryType, page) {
-      loadQuery(queryType, page);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const queryType = params.get('type') || 'complete';
-      const page = params.get('page') || 1;
-      loadQuery(queryType, page);
-    });
-
-    const userDropdownToggle = document.querySelector('.user-dropdown-toggle');
-    const userDropdown = document.querySelector('.user-dropdown');
-
-    userDropdownToggle.addEventListener('click', function() {
-        userDropdownToggle.classList.toggle('active'); 
-    });
-
-    // Close the dropdown if clicked outside
-    document.addEventListener('click', function(event) {
-        if (!userDropdownToggle.contains(event.target) && userDropdown.classList.contains('active')) {
-        userDropdownToggle.classList.remove('active');
-        }
-    });
-  </script>
+  <script src="../assets/js/dropdown.js"></script>
+  <script src="../assets/js/query.js"></script>
 </body>
 </html>

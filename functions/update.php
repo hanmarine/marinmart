@@ -130,13 +130,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_bind_param($userStmt, 'ssi', $username, $password, $userID);
 
             if (mysqli_stmt_execute($userStmt)) {
-                echo "<script>alert('Record updated successfully.'); window.location.href = 'tables.php';</script>";
+                echo "<script>alert('Record updated successfully.'); window.history.go(-2);</script>";
             } else {
                 echo "<script>alert('Error updating user record: " . addslashes(mysqli_error($conn)) . "'); window.history.back();</script>";
             }
             mysqli_stmt_close($userStmt);
         } else {
-            echo "<script>alert('Record updated successfully.'); window.location.href = 'tables.php';</script>";
+            echo "<script>alert('Record updated successfully.'); window.history.go(-2);</script>";
         }
     } else {
         echo "<script>alert('Error updating record: " . addslashes(mysqli_error($conn)) . "'); window.history.back();</script>";
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     mysqli_stmt_close($stmt);
 } else {
-    echo "<script>alert('Invalid request method.'); window.location.href = 'tables.php';</script>";
+    echo "<script>alert('Invalid request method.'); window.history.go(-2);</script>";
 }
 
 mysqli_close($conn);

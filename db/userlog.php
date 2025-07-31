@@ -1,15 +1,11 @@
 <?php 
-include('../db/connection.php');
-// Session handling to retrieve username (replace with your session handling logic)
-session_start();
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+include('connection.php');
+include('session.php');
 
-// Get the logged-in user ID (assuming it's stored in a session variable)
 $loggedInUserID = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 // Check if user ID is available
 if (!$loggedInUserID) {
-    // Redirect to login or handle the case where user ID is not found
     echo "Error: User ID not found in session.";
     exit;
 }

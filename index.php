@@ -1,126 +1,7 @@
 <?php
 include('./db/connection.php');
-
-session_start();
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
-
-// Initialize total counts
-$totalSuppliers = 0;
-$totalCategories = 0;
-$totalProducts = 0;
-
-// Queries to fetch data
-$totalSuppliersQuery = "SELECT COUNT(*) AS total_suppliers FROM supplier";
-$totalCategoriesQuery = "SELECT COUNT(*) AS total_categories FROM category";
-$totalProductsQuery = "SELECT COUNT(*) AS total_products FROM product";
-
-// Prepare and execute the total suppliers query
-if ($stmt = mysqli_prepare($conn, $totalSuppliersQuery)) {
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $totalSuppliers);
-    mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing total suppliers query: " . mysqli_error($conn);
-    exit;
-}
-
-// Prepare and execute the total categories query
-if ($stmt = mysqli_prepare($conn, $totalCategoriesQuery)) {
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $totalCategories);
-    mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing total categories query: " . mysqli_error($conn);
-    exit;
-}
-
-// Prepare and execute the total products query
-if ($stmt = mysqli_prepare($conn, $totalProductsQuery)) {
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $totalProducts);
-    mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing total products query: " . mysqli_error($conn);
-    exit;
-}
-
-// Query to get top 5 categories and group the rest into 'Others'
-$categoriesQuery = "
-    SELECT CategoryName, COUNT(ProductID) AS product_count
-    FROM category
-    LEFT JOIN product ON category.CategoryID = product.CategoryID
-    GROUP BY CategoryName
-    ORDER BY product_count DESC
-    LIMIT 5";
-
-$otherCategoriesQuery = "
-    SELECT COUNT(ProductID) AS product_count
-    FROM category
-    LEFT JOIN product ON category.CategoryID = product.CategoryID
-    WHERE CategoryName NOT IN (SELECT CategoryName FROM ($categoriesQuery) AS top_categories)";
-
-// Prepare and execute the categories query
-if ($stmt = mysqli_prepare($conn, $categoriesQuery)) {
-    mysqli_stmt_execute($stmt);
-    $categoriesResult = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing categories query: " . mysqli_error($conn);
-    exit;
-}
-
-// Prepare and execute the other categories query
-if ($stmt = mysqli_prepare($conn, $otherCategoriesQuery)) {
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $otherCategoriesCount);
-    mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing other categories query: " . mysqli_error($conn);
-    exit;
-}
-
-// Query to get top 5 suppliers and group the rest into 'Others'
-$suppliersQuery = "
-    SELECT SupplierName, COUNT(ProductID) AS product_count
-    FROM supplier
-    LEFT JOIN product ON supplier.SupplierID = product.SupplierID
-    GROUP BY SupplierName
-    ORDER BY product_count DESC
-    LIMIT 5";
-
-$otherSuppliersQuery = "
-    SELECT COUNT(ProductID) AS product_count
-    FROM supplier
-    LEFT JOIN product ON supplier.SupplierID = product.SupplierID
-    WHERE SupplierName NOT IN (SELECT SupplierName FROM ($suppliersQuery) AS top_suppliers)";
-
-// Prepare and execute the suppliers query
-if ($stmt = mysqli_prepare($conn, $suppliersQuery)) {
-    mysqli_stmt_execute($stmt);
-    $suppliersResult = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing suppliers query: " . mysqli_error($conn);
-    exit;
-}
-
-// Prepare and execute the other suppliers query
-if ($stmt = mysqli_prepare($conn, $otherSuppliersQuery)) {
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $otherSuppliersCount);
-    mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close($stmt);
-} else {
-    echo "Error preparing other suppliers query: " . mysqli_error($conn);
-    exit;
-}
-
-// Close connection
-mysqli_close($conn);
+include('./db/session.php');
+require_once './functions/fetch_dashboard.php';
 ?>
 
 <!DOCTYPE html>
@@ -129,54 +10,9 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Marinmart</title>
-    <link rel="stylesheet" href="./assets/dashboard.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assets/../assets/css/dashboard.css?v=<?php echo time(); ?>">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var categoryData = google.visualization.arrayToDataTable([
-                ['Category', 'Number'],
-                <?php while ($row = mysqli_fetch_assoc($categoriesResult)) { ?>
-                    ['<?php echo $row['CategoryName']; ?>', <?php echo $row['product_count']; ?>],
-                <?php } ?>
-                ['Others', <?php echo $otherCategoriesCount; ?>]
-            ]);
-
-            var supplierData = google.visualization.arrayToDataTable([
-                ['Supplier', 'Number'],
-                <?php while ($row = mysqli_fetch_assoc($suppliersResult)) { ?>
-                    ['<?php echo $row['SupplierName']; ?>', <?php echo $row['product_count']; ?>],
-                <?php } ?>
-                ['Others', <?php echo $otherSuppliersCount; ?>]
-            ]);
-
-            var o1 = {
-                title: 'TOP 5 CATEGORIES', 
-                titleTextStyle: {
-                    color: '#246af3' 
-                },
-                is3D: true,
-                backgroundColor: 'transparent',
-            };
-
-            var o2 = {
-                title: 'TOP 5 SUPPLIERS', 
-                titleTextStyle: {
-                    color: '#246af3' 
-                },
-                is3D: true,
-                backgroundColor: 'transparent',
-            };
-
-            var chart1 = new google.visualization.PieChart(document.getElementById('chart1'));
-            chart1.draw(categoryData, o1);
-
-            var chart2 = new google.visualization.PieChart(document.getElementById('chart2'));
-            chart2.draw(supplierData, o2);
-        }
-    </script>
+    <?php include './functions/loadCharts.php'; ?>
 </head>
 <body>
     <header class="header">
@@ -189,7 +25,6 @@ mysqli_close($conn);
         <div class="guest">
             <p>Hi, <?php echo $username; ?></p>
         </div>
-
     </header>
 
     <main class="main">
@@ -216,22 +51,6 @@ mysqli_close($conn);
     <footer>
         © 2024 Marinmart, All rights reserved.
     </footer>
-
-    <script>
-        const userDropdownToggle = document.querySelector('.user-dropdown-toggle');
-        const userDropdown = document.querySelector('.user-dropdown');
-
-        userDropdownToggle.addEventListener('click', function() {
-            userDropdownToggle.classList.toggle('active'); 
-        });
-
-        // Close the dropdown if clicked outside
-        document.addEventListener('click', function(event) {
-            if (!userDropdownToggle.contains(event.target) && userDropdown.classList.contains('active')) {
-            userDropdownToggle.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 </html>
 
