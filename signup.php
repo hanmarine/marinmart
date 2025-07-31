@@ -33,7 +33,7 @@
                 </div>
                 <div class="input-container">
                     <label for="contact-number">Contact Number:</label>
-                    <input type="tel" id="contact-number" name="contact-number" placeholder="e.g. 1234567890" required pattern="[0-9]{10}" maxlength="10">
+                    <input type="tel" id="contact-number" name="contact-number" placeholder="e.g. 1234567890" required pattern="[0-9]{11}" maxlength="11">
                 </div>
                 <div class="input-container">
                     <label for="password">Password:</label>
@@ -51,9 +51,7 @@
         </div>
     </div>
 
-    <footer>
-        © 2024 Marinmart, All rights reserved.
-    </footer>
-
+    <footer id="footer"></footer>
+    <script src="./assets/js/footer.js"></script>
 </body>
 </html>

@@ -1,5 +1,10 @@
 <h1 class="logo">marinmart</h1>
-<nav class="nav">
+<div class="hamburger-menu" id="hamburger-menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+<nav class="nav" id="main-nav">
     <a href="dashboard.php">DASHBOARD</a>
     <?php 
         if($_SESSION['role'] == 'admin'){

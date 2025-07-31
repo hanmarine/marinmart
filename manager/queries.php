@@ -7,6 +7,7 @@ include('../db/session.php');
 <head>
   <title>Queries | Marinmart</title>
   <link rel="stylesheet" href="../assets/css/admin.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="../assets/css/navbar.css?v=<?php echo time(); ?>">
 </head>
 <body>
   <header class="header">

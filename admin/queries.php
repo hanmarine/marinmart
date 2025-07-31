@@ -7,6 +7,7 @@ include('../db/session.php');
 <head>
   <title>Queries | Marinmart</title>
   <link rel="stylesheet" href="../assets/css/admin.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="../assets/css/navbar.css?v=<?php echo time(); ?>">
 </head>
 <body>
   <header class="header">
@@ -23,10 +24,9 @@ include('../db/session.php');
     </div>
   </main>
 
-  <footer>
-        © 2024 Marinmart, All rights reserved.
-  </footer>
-
+  <footer id="footer"></footer>
+  <script src="../assets/js/mobileNav.js"></script>
+  <script src="../assets/js/footer.js"></script>
   <script src="../assets/js/query.js"></script>
   <script src="../assets/js/dropdown.js"></script>
 </body>

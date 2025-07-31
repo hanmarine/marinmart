@@ -32,9 +32,7 @@
         </div>
     </div>
 
-    <footer>
-        © 2024 Marinmart. All rights reserved.
-    </footer>
-
+    <footer id="footer"></footer>
+    <script src="./assets/js/footer.js"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@
         ]);
 
         var o1 = {
-            title: 'TOP 5 CATEGORIES', 
+            title: 'TOP CATEGORIES', 
             titleTextStyle: {
                 color: '#246af3' 
             },
@@ -29,7 +29,7 @@
         };
 
         var o2 = {
-            title: 'TOP 5 SUPPLIERS', 
+            title: 'TOP SUPPLIERS', 
             titleTextStyle: {
                 color: '#246af3' 
             },

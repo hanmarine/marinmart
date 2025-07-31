@@ -11,6 +11,7 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Marinmart</title>
     <link rel="stylesheet" href="../assets/css/dashboard.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/css/navbar.css?v=<?php echo time(); ?>">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <?php include '../functions/loadCharts.php'; ?>
 </head>
@@ -39,11 +40,10 @@ mysqli_close($conn);
         <div class="chart-card" id="chart2">Loading chart...</div>
     </main>
 
-    <footer>
-        © 2024 Marinmart, All rights reserved.
-    </footer>
-    
-    <script src="../assets/js/dropdown.js"></script>
+    <footer id="footer"></footer>
+    <script src="../assets/js/mobileNav.js"></script>
+    <script src="../assets/js/footer.js"></script> 
+    <script src="../assets/js/dropdown.js"></script> 
 </body>
 </html>
 

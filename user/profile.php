@@ -89,6 +89,7 @@ mysqli_free_result($userInfoResult);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile | Marinmart</title>
     <link rel="stylesheet" href="../assets/css/profile.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/css/navbar.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header class="header">
@@ -163,10 +164,9 @@ mysqli_free_result($userInfoResult);
         </div>
     </main>
 
-    <footer>
-        © 2024 Marinmart, All rights reserved.
-    </footer>
-
+    <footer id="footer"></footer>
+    <script src="../assets/js/mobileNav.js"></script>
+    <script src="../assets/js/footer.js"></script>
     <script src="../assets/js/dropdown.js"></script>
 </body>
 </html>
