@@ -2,6 +2,7 @@
 
 # Marinmart
 
+<img src="https://skillicons.dev/icons?i=html,css,js,php,mysql" /><br>
 A supermarket management website project for CS Professional Elective 4.
 
 ## Key Features
