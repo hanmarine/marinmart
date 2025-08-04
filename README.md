@@ -1,5 +1,7 @@
-<img src="/screenshots/header.png" height="300" width="300" />
+<img src="/screenshots/header.png" height="150" width="150" />
+
 # Marinmart
+
 A supermarket management website project for CS Professional Elective 4.
 
 ## Key Features
@@ -21,7 +23,10 @@ A supermarket management website project for CS Professional Elective 4.
 
 ## Pages
 
-![dashboard page](/screenshots/dashboard.png)
+<details>
+  <summary>Dashboard</summary>
+  <img src="/screenshots/dashboard.png" />
+</details>
 
 <details>
   <summary>Login/Signup</summary>
