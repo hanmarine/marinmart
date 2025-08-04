@@ -1,96 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 body {
-    font-family: "DM Sans", sans-serif;
-    font-optical-sizing: auto;
-    margin: 0;
-    min-height: 100vh;
-    background-image: linear-gradient(#246af3, #ffc947);;
-    color: #26344b;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  margin: 0;
+  min-height: 100vh;
+  background-image: linear-gradient(#246af3, #ffc947);
+  color: #26344b;
 }
 
-h1.logo{
-    text-align: center;
-    font-family: "Abril Fatface", serif;
-    font-weight: 400;
-    font-style: normal;
-    color: #ffc947;
+h1.logo {
+  text-align: center;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffc947;
 }
+
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* Adjust for footer height */
+  padding: 20px; /* Add padding to prevent content from touching screen edges */
+  box-sizing: border-box; /* Ensures padding is included in total width */
 }
 
 .form-wrapper {
-    max-width: 400px;
-    text-align: center;
-    padding: 30px 150px;
-    background: rgba( 255, 255, 255, 0.6 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 6px );
-    -webkit-backdrop-filter: blur( 6px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  width: 100%; /* Make the form take up the full width on smaller screens */
+  max-width: 400px;
+  text-align: center;
+  padding: 30px; /* Reduced padding for smaller screens */
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 h1 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 select {
-    font-family: "DM Sans", sans-serif;
-    font-optical-sizing: auto;
-    width: 100%;
-    padding: 10px; 
-    margin-bottom: 20px;
-    border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc; /* Added border for better visibility */
+  box-sizing: border-box;
 }
 
 .input-container {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
+  text-align: left; /* Align labels to the left for better readability on mobile */
 }
 
 input[type="text"],
 input[type="password"],
 input[type="tel"] {
-    font-family: "DM Sans", sans-serif;
-    font-optical-sizing: auto;
-    padding: 10px;
-    border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  width: 100%; /* Make inputs take up the full width */
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 button {
-    font-family: "DM Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    background-color: #246af3;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  background-color: #246af3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%; /* Make button full width on smaller screens */
+  box-sizing: border-box;
 }
 
 button:hover {
-    background-color: #ffc947;
-    color: #246af3;
+  background-color: #ffc947;
+  color: #246af3;
 }
 
 /* Footer */
-footer{
-    color: #26344b;
-    text-align: center;
-    font-family: "DM Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    padding: 20px;
-    width: 100%;
+footer {
+  color: #26344b;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Media Query for Mobile Devices --- */
+@media (max-width: 768px) {
+  .form-wrapper {
+    padding: 20px; /* Reduce padding even further for smaller screens */
+  }
+
+  h1.logo {
+    font-size: 1.5rem; /* Make the logo smaller on mobile */
+  }
+
+  .container {
+    align-items: flex-start; /* Align content to the top on small screens */
+  }
 }

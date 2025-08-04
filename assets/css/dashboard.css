@@ -58,6 +58,7 @@ footer {
 */
 @media screen and (max-width: 768px) {
   .main {
+    margin-top: 20%;
     grid-template-columns: 1fr;
   }
   .chart-card {

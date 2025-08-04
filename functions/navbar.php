@@ -1,4 +1,4 @@
-<h1 class="logo">marinmart</h1>
+<img src="../assets/logo.png" alt="marinmart icon" height="40px" width="40px">
 <div class="hamburger-menu" id="hamburger-menu">
     <div class="bar"></div>
     <div class="bar"></div>

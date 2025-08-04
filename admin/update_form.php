@@ -83,30 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link rel="stylesheet" href="../assets/css/navbar.css?v=<?php echo time(); ?>">
 </head>
 <body>
-<header class="header">
-        <h1 class="logo">marinmart</h1>
-        <nav class="nav">
-            <a href="dashboard.php">DASHBOARD</a>
-            <a href="add_form.php">CREATE</a>
-            <a href="tables.php">TABLES</a>
-            <a href="queries.php">QUERIES</a>
-        </nav>
-        <div class="profile">
-            <a href="#" class="user-dropdown-toggle">
-                <img src="../assets/user.png" alt="profile icon" height="40px" width="40px">
-            </a>
-            <div class="user-dropdown">
-                <p>Hi, <?php echo $username; ?> (admin)</p>
-                <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?logout=true'; ?>">Logout</a>
-                <?php
-                if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
-                session_destroy();
-                header('Location: ../index.php');
-                exit;
-                }
-                ?>
-            </div>
-        </div>
+  <header class="header">
+      <?php include '../functions/navbar.php' ?>
   </header>
   <main class="main">
     <?php if (isset($data)) : ?>

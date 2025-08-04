@@ -17,7 +17,7 @@ require_once './functions/fetch_dashboard.php';
 </head>
 <body>
     <header class="header">
-        <h1 class="logo">marinmart</h1>
+        <img src="./assets/logo.png" alt="marinmart icon" height="40px" width="40px">
         <nav class="nav">
             <a href="index.php">DASHBOARD</a>
             <a href="login.php">LOG IN</a>
